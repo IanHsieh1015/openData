@@ -27,34 +27,36 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-    <div v-else class="row g-0 border px-3 py-2 mb-2" v-for="item in paginatedItems" :key="item.Id">
-      <div class="imgWrap col-3 d-flex justify-content-center align-items-center">
-        <img :src="item.Picture1" alt="" />
+    <div v-else>
+      <div class="row g-0 border px-3 py-2 mb-2" v-for="item in paginatedItems" :key="item.Id">
+        <div class="imgWrap col-3 d-flex justify-content-center align-items-center">
+          <img :src="item.Picture1" alt="" />
+        </div>
+        <div class="col-8 d-flex justify-content-center align-items-start flex-column px-3">
+          <p>{{ item.Name }}</p>
+          <p>{{ item.Description }}</p>
+        </div>
       </div>
-      <div class="col-8 d-flex justify-content-center align-items-start flex-column px-3">
-        <p>{{ item.Name }}</p>
-        <p>{{ item.Description }}</p>
-      </div>
+      <nav>
+        <ul class="pagination">
+          <li class="page-item" :class="{ disabled: state.currentPage === 1 }">
+            <a class="page-link" href="#" @click="prevPage">Previous</a>
+          </li>
+          <li
+            class="page-item"
+            v-for="page in state.totalPage"
+            :key="page"
+            :class="{ active: state.currentPage === page }"
+          >
+            <a class="page-link" href="#" @click="changePage(page)">{{ page }}</a>
+          </li>
+          <li class="page-item" :class="{ disabled: state.currentPage === state.totalPage }">
+            <a class="page-link" href="#" @click="nextPage">Next</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
-  <nav>
-    <ul class="pagination">
-      <li class="page-item" :class="{ disabled: state.currentPage === 1 }">
-        <a class="page-link" href="#" @click="prevPage">Previous</a>
-      </li>
-      <li
-        class="page-item"
-        v-for="page in state.totalPage"
-        :key="page"
-        :class="{ active: state.currentPage === page }"
-      >
-        <a class="page-link" href="#" @click="changePage(page)">{{ page }}</a>
-      </li>
-      <li class="page-item" :class="{ disabled: state.currentPage === state.totalPage }">
-        <a class="page-link" href="#" @click="nextPage">Next</a>
-      </li>
-    </ul>
-  </nav>
 </template>
 
 <script setup lang="ts">
