@@ -27,18 +27,20 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-    <div v-else>
-      <div class="row g-0 border px-3 py-2 mb-2" v-for="item in paginatedItems" :key="item.Id">
-        <div class="imgWrap col-3 d-flex justify-content-center align-items-center">
-          <img :src="item.Picture1" alt="" />
-        </div>
-        <div class="col-8 d-flex justify-content-center align-items-start flex-column px-3">
-          <p>{{ item.Name }}</p>
-          <p>{{ item.Description }}</p>
+    <div class="row g-0" v-else>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-2 px-xl-3 px-lg-3 px-md-3 px-sm-3 px-0 py-2" v-for="item in paginatedItems" :key="item.Id">
+        <div class="border px-3 py-2 h-100">
+          <div class="imgWrap d-flex justify-content-center align-items-center">
+            <img :src="item.Picture1" alt="" />
+          </div>
+          <div class="d-flex justify-content-center align-items-start flex-column px-xl-3 px-lg-3 px-md-3 px-sm-3 px-0">
+            <p>{{ item.Name }}</p>
+            <p>{{ item.Description }}</p>
+          </div>
         </div>
       </div>
       <nav>
-        <ul class="pagination">
+        <ul class="pagination flex-wrap">
           <li class="page-item" :class="{ disabled: state.currentPage === 1 }">
             <a class="page-link" href="#" @click="prevPage">Previous</a>
           </li>
@@ -115,7 +117,7 @@ const totalPage = () => {
   console.log('總頁數', state.totalPage)
 
   // 獲取總頁數後重新計算當前頁面顯示的項目
-  paginatedItems.value
+  // paginatedItems.value
 }
 
 // 上一頁
@@ -138,7 +140,8 @@ const changePage = (page: any) => {
 </script>
 <style scoped>
 .imgWrap {
-  width: 200px;
+  max-width: 200px;
+  width: 100%;
   height: 200px;
 }
 .imgWrap img {
@@ -146,5 +149,8 @@ const changePage = (page: any) => {
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+.page-link {
+  /* border: none; */
 }
 </style>
