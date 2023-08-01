@@ -66,7 +66,14 @@ import { reactive, onMounted, computed } from 'vue'
 
 const state = reactive({
   isLoading: false,
-  openData: [],
+  openData: [
+    {
+      Id: 0,
+      Picture1: '',
+      Name: '',
+      Description: ''
+    }
+  ],
   perPage: 10, // 每頁顯示的項目數量
   currentPage: 1, // 當前頁面
   totalPage: 0
