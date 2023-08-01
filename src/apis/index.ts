@@ -2,7 +2,7 @@ import axios from "axios";
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 // 假設 API 的根 URL 為 "/api"
-const baseURL = "/api";
+// const baseURL = "/api";
 
 // 定義 API 響應的介面
 interface IAPIResponse<T> {
@@ -22,7 +22,7 @@ export async function apiRequest<T>(method: string, url: string, data?: any): Pr
 
   const config = {
     method,
-    url: `${baseURL}/${url}`,
+    // url: `${baseURL}/${url}`,
     data,
     headers: {
       "Content-Type": "application/json",
